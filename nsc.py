@@ -36,22 +36,51 @@ def toDecimal( num, base ):
 
 	return result
 
-if __name__ == '__main__':
-
+def solveTable():
 	nums = [ 20, 13, 14, 22, 17, 18, 27, 10 ]
 	bases = [ 3, 2, 13, 14, 10, 7, 4, 8 ]
+	spaces = [ 5, 7, 4, 4, 4, 4, 5, 4 ]
 
-	i = 1
+	print( '+-----+-------+----+----+----+----+-----+----+' )
 
-	for num in nums:
-		row = '(' + str(i) + ')  '
-
-		for base in bases:
-			result = convert( str( num ), 10, base )
-			row += result + '  '
-
-		print( row + '\n' )
+	# BASES
+	row = ''
+	i = 0
+	for base in bases:
+		row += '| ' + str( base )
+		l = len( str( base ))
+		while l < spaces[ i ] - 1:
+			row += ' '
+			l += 1
 
 		i += 1
 
+	print( row + '|' )
+
+	# VALUES
+	i = 1
+	for num in nums:
+		row = ''
+
+		j = 0
+		for base in bases:
+			result = convert( str( num ), 10, base )
+			row += '| ' + result
+
+			l = len( result )
+			while l < spaces[ j ] - 1:
+				row += ' '
+				l += 1
+
+			j += 1
+
+		print( '+-----+-------+----+----+----+----+-----+----+' )
+		print( row + '|' )
+
+		i += 1
+
+	print( '+-----+-------+----+----+----+----+-----+----+' )
+
+if __name__ == '__main__':
+	solveTable()
 
